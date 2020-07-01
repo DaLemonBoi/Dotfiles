@@ -1,6 +1,12 @@
-# dotfiles
+# Dotfiles
 
 These are my dotfiles. Use them as you wish.
+
+### Depends on
+
+.zshrc (/home/lemon/.zshrc & /root/.zshrc) requires:
+
+[Zsh shell] (http://www.zsh.org/)
 
 ### Installing
 
