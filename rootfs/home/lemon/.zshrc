@@ -40,11 +40,11 @@ export EDITOR=nano
 
 ### aliases ###
 alias ls='ls --color=auto'
-alias grep='grep --colour=auto'
+alias grep='grep --color=auto'
 alias rmd='rm -rf'
 alias doas='doas -- '
 alias gita='git add'
 alias gitc='git commit'
 alias gitp='git push'
 alias gits='git status'
-alias lsa='ls -a'
+alias lsa='ls -a --color=auto'

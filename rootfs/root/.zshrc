@@ -36,5 +36,6 @@ export PS1="%F{1}| ROOT: %/ | $%F{7} "
 
 ### aliases ###
 alias ls='ls --color=auto'
-alias grep='grep --colour=auto'
+alias grep='grep --color=auto'
 alias rmd='rm -rf'
+alias lsa='ls -a --color=auto'
