@@ -20,10 +20,10 @@ first rename the normal user home directory in /home to your normal user home di
 mv home/lemon [YOUR NORMAL USER]
 ```
 
-now mv the rootfs contents to your / with root privileges 
+now copy the rootfs contents to your / with root privileges 
 
 ```
-mv rootfs/* /
+cp -rv rootfs/* /
 ```
 
 you may need to restart or at least relogin for changes to take effect
