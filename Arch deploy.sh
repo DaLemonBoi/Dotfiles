@@ -2,7 +2,7 @@
 # Authored by @DaLemonBoi on GitHub.
 # Deploy Arch/Artix system script.
 
-unset response WHILE_VAR NORMALUSER HOMENORMAL NOTAU actuid DRIVER_VAR # Make sure there is no conflicting variables.
+unset response WHILE_VAR NORMALUSER HOMENORMAL DRIVER_VAR # Make sure there is no conflicting variables.
 
 if [[ $EUID -ne 0 ]]; then # Checks if running with root privileges and exits if not.
    echo "Please run with root privileges" 1>&2
@@ -12,16 +12,15 @@ echo "Running deploy script..."
 sleep 1
 echo "Installing necessary programs..."
 sleep .5
-yes | pacman --quiet -Syyu # Updates and upgrades.
-yes | pacman --quiet -S xorg gnome-shell gnome-tweaks nautilus lightdm lightdm-webkit2-greeter zsh firefox dash # Installs necessary packages.
+yes "" | pacman --quiet -Syyu # Updates and upgrades.
+yes "" | pacman --quiet -S xorg gnome-shell gnome-tweaks nautilus lightdm lightdm-webkit2-greeter zsh firefox dash # Installs necessary packages.
 echo "Installing and configuring lightdm..."
-git clone git clone git@github.com:NoiSek/Aether.git # Clone Aether lightdm theme.
-mv Aether /usr/share/lightdm-webkit/themes/Aether # Following installation instructions per the Aether theme github page.
+git clone https://github.com/NoiSek/Aether /usr/share/lightdm-webkit/themes/Aether # Clone Aether lightdm theme into correct directory.
 sed -i 's/^webkit_theme\s*=\s*\(.*\)/webkit_theme = lightdm-webkit-theme-aether #\1/g' /etc/lightdm/lightdm-webkit2-greeter.conf
 sed -i 's/^\(#?greeter\)-session\s*=\s*\(.*\)/greeter-session = lightdm-webkit2-greeter #\1/ #\2g' /etc/lightdm/lightdm.conf
 echo "Bringing down and installing dotfiles..."
-git clone https://github.com/DaLemonBoi/Dotfiles # Clones my dotfiles repository.
-cd Dotfiles/rootfs
+git clone https://github.com/DaLemonBoi/Dotfiles # Clone my dotfiles repository.
+cd Dotfiles/rootfs/home
 read -p "Please specify the actual name of your normal user.
 
 > " NORMALUSER
@@ -32,8 +31,8 @@ do
 
 > " NORMALUSER
 done
-mv lemon ../rootfs$HOMENORMAL
-read -r -p "Do you want to install my dotfiles? This may overwrite some files if they have the same same absolute path as those from the rootfs directory so it is only recommended to do this in fresh installs.
+mv lemon ../../rootfs$HOMENORMAL
+read -r -p "Do you want to install my dotfiles? This may overwrite some files if they have the same absolute path as those from the rootfs directory so it is only recommended to do this in fresh installs.
 This part can be safely skipped if you like [y/N] 
 
 > " response
