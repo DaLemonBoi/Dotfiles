@@ -4,13 +4,14 @@
 
 unset response WHILE_VAR NORMALUSER HOMENORMAL NOTAU actuid DRIVER_VAR # Make sure there is no conflicting variables.
 
-actuid=27358 #user1 uid
-#actuid=`id user1 | sed 's/uid=\([0-9]*\).*/\1/g'`
-
-NOTAU=64
-
-[ $UID -ne $actuid ] && echo "Please run with root privileges" && exit $NOTAU || echo "Running deploy script..." # Checks if running with root privileges and exits if not.
+if [[ $EUID -ne 0 ]]; then # Checks if running with root privileges and exits if not.
+   echo "Please run with root privileges" 1>&2
+   exit 1
+fi
+echo "Running deploy script..."
+sleep 1
 echo "Installing necessary programs..."
+sleep .5
 yes | pacman --quiet -Syyu # Updates and upgrades.
 yes | pacman --quiet -S xorg gnome-shell gnome-tweaks nautilus lightdm lightdm-webkit2-greeter zsh firefox dash # Installs necessary packages.
 echo "Installing and configuring lightdm..."
