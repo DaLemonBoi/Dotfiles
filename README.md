@@ -1,3 +1,4 @@
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-no-red.svg)](https://bitbucket.org/lbesson/ansi-colors)
 # Dotfiles
 
 These are my dotfiles. Use them as you wish.
